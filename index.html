@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>贷款计算</title>	
+	<link rel="shortcut icon" href="img/home.png">
+	<link rel="stylesheet" href="css/bootstrap-3.2.0.min.css">
+</head>
+
+<style type="text/css">
+	.put_div div div{
+			overflow: hidden;
+			display: inline-block;
+			width: 17vw;
+	}
+	.put_div div div label{
+			width: 5vw;
+	}
+	#table2html{
+		width: 90vw;
+		border: 1px solid #ccc;
+		border-collapse: collapse;
+	}
+	#table2html tr td,#table2html tr th{
+		height:40px;
+		border: 1px solid #ccc;
+	}
+	th{
+		text-align:center;
+		background-color:#eef1f6
+	}
+	html {
+		font-size: 4vw;
+	}
+	.none {
+		display: none;
+	}
+
+</style>
+
+<body>
+	<header class="htmleaf-header">
+		<h1 align="center">贷款计算 </h1>
+		<div class="htmleaf-links">
+		</div>
+	</header>
+	<section >
+		<div style="width: 90vw;margin: 0 auto;padding:20px 0">
+			<div>
+				<div>
+					<div class="put_div">
+						<div>
+							<div><label>贷款总额:</label><input id="total_amount" value="" /></div>
+							<div><label>利息年利率%:</label><input id="rate" value="" /></div>
+							<div><label>逾期年利率%:</label><input id="beyond_rate" value="" /></div>
+							<div><label>年利息日:</label><input id="numbers" value="" /></div>
+							<div><label>起算日:</label><input id="first_date" type="date" value="" /></div>
+						</div>
+						<div>
+							<div><label>计算截止日:</label><input type="date" id="end_date" value="" /></div>
+							<div><label>贷款到期日:</label><input type="date" id="due_date" value="" /></div>
+						</div>
+					</div>
+					<div style="float:right;margin: 7px auto"><button id="add_btn" class="btn btn-primary">生成明细</button></div>
+					<div>
+					  <table id="table2html">
+						<thead>
+							<tr>
+								<th>本金余额</th>
+								<th>年利率%</th>
+								<th>日利率%</th>
+								<th>起算日</th>
+								<th>截止日</th>
+								<th>计息天数</th>
+								<th>当期应付利息</th>
+								<th>当期应付罚息</th>
+								<th>当期应付复利</th>
+								<!-- <th>当期尚欠本金</th> -->
+								<th>当期尚欠利息</th>
+								<th>当期尚欠罚息</th>
+								<th>尚欠复利</th>
+								<!-- <th>操作</th> -->
+							</tr>
+						</thead>
+						<tbody align="center">
+							<tr class="none">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<!-- <td></td> -->
+								<!-- <td><a class="btn_del" href="javascript:void(0)">删除</a></td> -->
+							</tr>
+						</tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+			<div style="float:right;margin: 7px auto"><button id="export_btn" class="btn btn-primary">导出</button></div>
+		</div>
+	</section>
+	<script src="js/index.js"></script>
+	<script src="js/moment.js"></script>
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="dist/jquery.table2excel.js"></script>
+</body>
+</html>
