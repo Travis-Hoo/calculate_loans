@@ -5,21 +5,30 @@ window.onload=function(){
 	$("#add_btn").click(function(){
 		
 		$(".put_div input").attr("disabled","disabled");
-		$("#add_btn").attr("disabled","disabled");
+		$("#refund_amount").removeAttr("disabled");
+		$("#refund_date").attr("disabled",false);
 		
 		var table = document.getElementById ("table2html");
-		var total_amount = document.getElementById ("total_amount").value;
-		
-		var first_date = document.getElementById ("first_date").value;		//起算日
-		var end_date = moment(document.getElementById ("end_date").value);			//计算截止日
-		var due_date = moment(document.getElementById ("due_date").value);			//贷款到期日
+		var total_amount = document.getElementById ("total_amount").value;		
+		var first_date = moment(document.getElementById ("first_date").value);									//起算日
+		var end_date = moment(document.getElementById ("end_date").value);								//计算截止日
+		var due_date = moment(document.getElementById ("due_date").value);								//贷款到期日
 		var due = due_date.format('YYYY-MM-DD');
 		var rate = document.getElementById ("rate").value;												//年利率
 		var beyond_rate = document.getElementById ("beyond_rate").value;								//预期年利率
 		var numbers = document.getElementById ("numbers").value;										//年利息日
+		var out_account_day = document.getElementById ("out_account_day").value;						//出账日
+		var refund_amount = document.getElementById ("refund_amount").value;							//还款金额
+		var refund_date = document.getElementById ("refund_date").value;								//还款日
+		var out_account_date = first_date.startOf("month").add(out_account_day-1, 'days');
+		
+			alert(first_date.startOf("month").add(out_account_day-1, 'days').format('YYYY-MM-DD'));
+			//balance_amount
+			//next_begin_date
 			
 		var interest = 0, lastDays = 0, lastRest = 0, lastfRest = 0, lastFL = 0, qfl = 0;
-		for(i = 1; moment(first_date).add(i, 'M').subtract(1, 'M').isSameOrBefore(end_date); i++ ){
+		for(i = 0; out_account_date.add(i, 'M').isSameOrBefore(refund_date); i++ ){
+		//for(i = 1; moment(first_date).add(i, 'M').subtract(1, 'M').isSameOrBefore(end_date); i++ ){
 			var date = moment(first_date).add(i, 'M');
 			//alert(date.format('YYYY-MM-DD'));
 			var d1 = moment(first_date).add(i, 'M').subtract(1, 'M');

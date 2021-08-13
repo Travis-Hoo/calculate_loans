@@ -52,15 +52,22 @@
 				<div>
 					<div class="put_div">
 						<div>
-							<div><label>贷款总额:</label><input id="total_amount" value="" /></div>
-							<div><label>利息年利率%:</label><input id="rate" value="" /></div>
-							<div><label>逾期年利率%:</label><input id="beyond_rate" value="" /></div>
-							<div><label>年利息日:</label><input id="numbers" value="" /></div>
-							<div><label>起算日:</label><input id="first_date" type="date" value="" /></div>
+							<div><label>贷款总额:</label><input id="total_amount" type="number" /></div>
+							<div><label>利息年利率%:</label><input id="rate" type="number" /></div>
+							<div><label>逾期年利率%:</label><input id="beyond_rate" type="number" /></div>
+							<div><label>每年总利息日:</label><input id="numbers" value="360" type="number" /></div>
+							<div><label>起算日:</label><input id="first_date" type="date" /></div>
 						</div>
 						<div>
-							<div><label>计算截止日:</label><input type="date" id="end_date" value="" /></div>
-							<div><label>贷款到期日:</label><input type="date" id="due_date" value="" /></div>
+							<div><label>计算截止日:</label><input type="date" id="end_date" /></div>
+							<div><label>贷款到期日:</label><input type="date" id="due_date" /></div>
+							<div><label>每月出账日:</label><input type="number" id="out_account_day" value="20" min="1" max="28"/>&nbsp;日</div>
+							<div><label>还款金额:</label><input id="refund_amount" type="number" /></div>
+							<div><label>还款日:</label><input type="date" id="refund_date" /></div>
+						</div>
+						<div>
+							<input type="hidden" id="balance_amount" />
+							<input type="hidden" id="next_begin_date" />
 						</div>
 					</div>
 					<div style="float:right;margin: 7px auto"><button id="add_btn" class="btn btn-primary">生成明细</button></div>
@@ -69,26 +76,20 @@
 						<thead>
 							<tr>
 								<th>本金余额</th>
+								<th>还款</th>
 								<th>年利率%</th>
 								<th>日利率%</th>
 								<th>起算日</th>
 								<th>截止日</th>
 								<th>计息天数</th>
-								<th>当期应付利息</th>
-								<th>当期应付罚息</th>
-								<th>当期应付复利</th>
-								<!-- <th>当期尚欠本金</th> -->
-								<th>当期尚欠利息</th>
-								<th>当期尚欠罚息</th>
-								<th>尚欠复利</th>
+								<th>利息</th>
+								<th>罚息</th>
+								<th>复利</th>
 								<!-- <th>操作</th> -->
 							</tr>
 						</thead>
 						<tbody align="center">
 							<tr class="none">
-								<td></td>
-								<td></td>
-								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -114,5 +115,6 @@
 	<script src="js/moment.js"></script>
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script src="dist/jquery.table2excel.js"></script>
+	<script src="dist/jquery.validate.min.js"></script>
 </body>
 </html>
