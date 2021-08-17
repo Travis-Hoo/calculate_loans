@@ -33,7 +33,7 @@ window.onload=function(){
 		}
 		var interest = 0, lastDays = 0, lastRest = 0, lastfRest = 0, lastFL = 0, qfl = 0;
 		var out_account_date = first_date.startOf("month").add(out_account_day-1, 'day');
-		for(i = 0; out_account_date.add(i, 'M').isBefore(refund_date); i++ ){
+		for(i = 0; out_account_date.add(i, 'M').startOf("month").isSameOrBefore(refund_date.startOf("month")); i++ ){
 						
 			var newTr = tbody.firstElementChild.cloneNode(true);
 			newTr.className = '';
@@ -41,12 +41,20 @@ window.onload=function(){
 			var next_date = out_account_date.add(i, 'M');
 			var next_date_start = next_date.startOf("month");
 			var refund_date_start = refund_date.startOf("month");
-			var child2 = '', child4 = '', child5 = 0;
-			newTr.children[0].innerHTML = balance_amount;
-			newTr.children[1].innerHTML = 0;
-			newTr.children[3].innerHTML = next_begin_date.format('YYYY-MM-DD');
+			var child0 = '',child1 = '',  child2 = '', child4 = '', child5 = 0;
 			var next_d = next_date.add(1, 'M');
-			
+			var next_balance_amount = (parseFloat(balance_amount) - parseFloat(refund_amount)).toFixed(4);
+			if(next_begin_date.isSame(refund_date) && next_d.isBefore(end_date)){
+				child0 = next_balance_amount;
+				child1 = refund_amount;
+			}else{
+				child0 = balance_amount;
+				child1 = 0;
+			}
+			newTr.children[0].innerHTML = child0;
+			newTr.children[1].innerHTML = child1;
+			newTr.children[3].innerHTML = next_begin_date.format('YYYY-MM-DD');
+
 			if(next_begin_date.isBefore(next_date)){
 				child4 = next_date.format('YYYY-MM-DD');
 				child5 = next_date.diff(next_begin_date, 'day');
@@ -55,11 +63,23 @@ window.onload=function(){
 				if(next_d.isBefore(refund_date)){
 					child4 = next_d.format('YYYY-MM-DD');
 					child5 = next_d.diff(next_begin_date, 'day');
-				}else{
-					child4 = refund_date.format('YYYY-MM-DD');
-					child5 = refund_date.diff(next_begin_date, 'day');
+					next_begin_date = next_d;
 				}
-				next_begin_date = next_d;
+			}
+			if(next_begin_date.isSame(refund_date)){
+				if(next_d.isBefore(end_date)){
+					child4 = next_d.format('YYYY-MM-DD');
+					child5 = next_d.diff(next_begin_date, 'day');
+					document.getElementById("next_begin_date").value = child4;
+					document.getElementById("balance_amount").value = next_balance_amount;
+				}else{
+					child4 = end_date.format('YYYY-MM-DD');
+					child5 = end_date.diff(next_begin_date, 'day');
+				}
+			}else if(next_d.startOf("month").isSame(refund_date.startOf("month"))){
+				child4 = refund_date.format('YYYY-MM-DD');
+				child5 = refund_date.diff(next_begin_date, 'day');
+				next_begin_date = refund_date;
 			}
 			newTr.children[4].innerHTML = child4;
 			newTr.children[5].innerHTML = child5;
@@ -156,9 +176,9 @@ window.onload=function(){
 //			newTr.children[9].innerHTML = interest;					
 			tbody.appendChild(newTr);
 		}
-		newTr.children[0].innerHTML = (parseFloat(balance_amount) - parseFloat(refund_amount)).toFixed(4);
-		newTr.children[1].innerHTML = refund_amount;
-		newTr.children[3].innerHTML = next_begin_date.format('YYYY-MM-DD');
+		// newTr.children[0].innerHTML = (parseFloat(balance_amount) - parseFloat(refund_amount)).toFixed(4);
+		// newTr.children[1].innerHTML = refund_amount;
+		// newTr.children[3].innerHTML = next_begin_date.format('YYYY-MM-DD');
 
 
 	});
