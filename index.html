@@ -52,22 +52,23 @@
 				<div>
 					<div class="put_div">
 						<div>
-							<div><label>贷款总额:</label><input id="total_amount" type="number" value="10000" /></div>
-							<div><label>利息年利率%:</label><input id="rate" type="number" value="5" /></div>
-							<div><label>逾期年利率%:</label><input id="beyond_rate" type="number" value="7" /></div>
+							<div><label>贷款总额:</label><input id="total_amount" type="number" value="330000" /></div>
+							<div><label>利息年利率%:</label><input id="rate" type="number" value="5.0025" /></div>
+							<div><label>逾期年利率%:</label><input id="beyond_rate" type="number" value="7.50375" /></div>
 							<div><label>每年总利息日:</label><input id="numbers" value="360" type="number" /></div>
 							<div><label>每月出账日:</label><input type="number" id="out_account_day" value="20" min="1" max="28"/>&nbsp;日</div>
 						</div>
 						<div>
-							<div><label>贷款到期日:</label><input type="date" id="due_date" value="2021-08-12" /></div>
-							<div><label>起算日:</label><input id="first_date" type="date" value="2021-01-02" /></div>
-							<div><label>计算截止日:</label><input type="date" id="end_date" value="2022-02-05" /></div>
-							<div><label>还款日:</label><input type="date" id="refund_date" value="2021-07-09" /></div>
+							<div><label>贷款到期日:</label><input type="date" id="due_date" value="2020-03-25" /></div>
+							<div><label>计算截止日:</label><input type="date" id="calculate_date" value="2021-02-01" /></div>
+							<div><label>起算日:</label><input id="first_date" type="date" value="2020-03-25" /></div>
+							<div><label>截止日:</label><input type="date" id="end_date" value="2020-04-20" /></div>
 							<div><label>还款金额:</label><input id="refund_amount" type="number" /></div>
 						</div>
 						<div>
 							<input type="hidden" id="balance_amount" />
-							<input type="hidden" id="next_begin_date" />
+							<input type="hidden" id="penalty_interest" />
+							<input type="hidden" id="no_interest_day" />
 						</div>
 					</div>
 					<div style="float:right;margin: 7px auto"><button id="add_btn" class="btn btn-primary">添加明细</button></div>
@@ -115,5 +116,6 @@
 	<script src="dist/jquery.validate.min.js"></script>
 	<script src="js/dayjs/dayjs.min.js"></script>
 	<script src="js/dayjs/plugin/isSameOrBefore.js"></script>
+	<script src="js/dayjs/plugin/isBetween.js"></script>
 </body>
 </html>
