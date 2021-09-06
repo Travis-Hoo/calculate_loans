@@ -1,5 +1,7 @@
 window.onload=function(){
-	
+
+	console.info(1);
+
 	dayjs.extend(window.dayjs_plugin_isSameOrBefore);
 	dayjs.extend(window.dayjs_plugin_isBetween);
 
@@ -63,10 +65,10 @@ window.onload=function(){
 		newTr.children[5].innerHTML = child5;
 		if(due_date.isAfter(first_date)){
 			child2 = rate;
-			child6 = parseFloat(child0*rate/numbers*child5/100).toFixed(4);
+			child6 = parseFloat(child0*rate/numbers*child5/100).toFixed(2);
 		}else{
 			child2 = beyond_rate;
-			child7 = parseFloat(child0*beyond_rate/numbers*child5/100).toFixed(4);
+			child7 = parseFloat(child0*beyond_rate/numbers*child5/100).toFixed(2);
 		}
 		newTr.children[2].innerHTML = child2;
 		newTr.children[6].innerHTML = child6;
@@ -83,7 +85,7 @@ window.onload=function(){
 			}
 			no_interest_day = parseInt(no_interest_day) + parseInt(child5);
 			if(dayjs(child4).date() == out_account_day || dayjs(child4).isSame(calculate_date)){
-				child8 = parseFloat(penalty_interest*child2/numbers*no_interest_day/100).toFixed(4);
+				child8 = parseFloat(penalty_interest*child2/numbers*no_interest_day/100).toFixed(2);
 				no_interest_day = 0;
 			}
 			document.getElementById ("no_interest_day").value = no_interest_day;
